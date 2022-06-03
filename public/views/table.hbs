@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <div class="container">
+        <div class="row">
+            <div id="form" class="col" style="width: 100%; margin-left: 80px">
+            <h1 style="text-align: center; margin-top: 80px;">Ingrese Producto</h1>
+
+            <form onsubmit="return enviarProducto()">
+                <div class="container-sm">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Titulo del producto:</label>
+                    <input type="text" class="form-control" id="title" placeholder="Ej. Lapicera" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Precio:</label>
+                    <input type="number" class="form-control" id="price" placeholder="Ej. 200" required></input>
+                </div>
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">Url de imagen:</label>
+                    <input type="text" class="form-control" id="thumbnail" placeholder="Ej. https://http2.mlstatic.com/D_NQ_NP_876006-MLA32697887039_102019-O.jpg" required></input>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary mb-3">Confirmar</button>
+                </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="table" class="col" style="width: 100%;">
+            <h1 style="text-align: center; margin-top: 80px;">Tabla Productos</h1>
+
+            {{#if products}}
+            <table class="table table-striped table-bordered table-hover" style="width: 40%; margin: auto; text-align: center;">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Imagen</th>
+                </tr>
+            </thead>
+            <tbody id="productsTable">
+                {{#each products}}
+                <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td><img style="width: 50px; height:50px" src={{this.thumbnail}} alt={{this.title}}></td>
+                </tr>
+                {{/each}}
+            </tbody>
+            </table>
+            {{else}}
+            <h1 style="text-align: center;">No hay productos</h1>
+            {{/if}}
+        </div>
+    </div>
+
+        <div id="chat" class="col" style="width: 50%;">
+            <h2 style="margin-top: 80px;">Chat</h2>
+
+            <div id="messages" class="container"></div>
+
+            <form onsubmit="return enviarMensaje()">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">@</span>
+                    <input type="email" class="form-control" placeholder="Email" id="author" aria-label="Username" aria-describedby="author">
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-text">Mensaje</span>
+                    <textarea class="form-control" placeholder="Tu mensaje" aria-label="With textarea" id="text"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary mb-3" style="margin-top: 20px;">Enviar mensaje</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
