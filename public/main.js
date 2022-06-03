@@ -38,9 +38,9 @@ const enviarMensaje = (e) => {
     const text = document.getElementById('text').value;
     const date = String(new Date().toDateString() + ' ' + new Date().toLocaleTimeString())
     const message = { author, text, date };
+    socket.emit('new_message', message);
     author = ' ';
     text = ' ';
-    socket.emit('new_message', message);
     return false;
 }
 
